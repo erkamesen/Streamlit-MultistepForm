@@ -4,6 +4,7 @@ import re
 import cv2
 import numpy as np
 import tempfile
+import json
 
 
 def increase_stage():
@@ -16,9 +17,9 @@ def decrease_stage():
 
 def buttons():
     col1, col2 = st.columns(2)
-    col1.button(label="Back", use_container_width=True,
+    col1.button(label=get_text("Back"), use_container_width=True,
                 type="primary", on_click=decrease_stage)
-    col2.button(label="Next", use_container_width=True,
+    col2.button(label=get_text("Next"), use_container_width=True,
                 type="primary", on_click=increase_stage)
 
 
@@ -60,3 +61,21 @@ def images(image_list: list):
             cv2.imwrite(temp_img_path, cv2_img)
             response_list.append(cv2_img)
     return response_list
+
+
+def get_language_code():
+    try:
+        return st.experimental_get_query_params().get("language")[0]
+    except:
+        return 
+
+
+def get_text(sentence):
+    language = get_language_code()
+    if not language or language == "en":
+        return sentence
+    else:
+        with open("./app/language.json", "r") as f:
+            content = json.load(f)
+        resp = content.get(language).get(sentence)
+        return resp

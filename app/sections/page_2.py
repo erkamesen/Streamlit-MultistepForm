@@ -1,15 +1,16 @@
 import streamlit as st
 from streamlit_image_select import image_select
 from app.utils import buttons
+from app.utils import get_text
 
 
 def section_2():
     st.image(f"./app/assets/steps/{st.session_state.get('stage')+1}.png")
-    st.header(":gray[Hair Type 🦱]", divider="rainbow")
+    st.header(f":gray[{get_text('Hair Type 🦱')}]", divider="rainbow")
     gender = st.session_state.get("user").get("gender_choice")
     captions = ["0", "1", "2", "3", "4", "5"]
     i = image_select(
-        label="The parts of your hair that are falling out will help us to make a faster consultation..",
+        label=get_text("The parts of your hair that are falling out will help us to make a faster consultation.."),
         images=[
             f"./app/assets/{gender.lower()}/page2/1.png",
             f"./app/assets/{gender.lower()}/page2/2.png",

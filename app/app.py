@@ -8,7 +8,10 @@ from streamlit_extras.customize_running import center_running
 import time
 from app.utils import images
 import threading
+
+
 load_dotenv()
+
 
 
 def create_app():
@@ -27,13 +30,17 @@ def create_app():
     ########### STAGE MANAGEMENT ###########
 
     if "stage" not in st.session_state:
-        st.session_state["stage"] = 0
+        st.session_state["stage"] = -1
 
     if "user" not in st.session_state:
         st.session_state["user"] = {}
 
     ########### STAGE MANAGEMENT ###########
-    if st.session_state["stage"] == 0:
+    if st.session_state["stage"] == -1:
+        section_0()
+        
+
+    elif st.session_state["stage"] == 0:
         section_1()
 
     elif st.session_state["stage"] == 1:
