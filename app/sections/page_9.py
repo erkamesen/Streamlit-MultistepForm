@@ -4,6 +4,7 @@ from app.utils import check_email, decrease_stage, get_value
 
 country_codes = {}
 
+
 with open("countries.txt", "r") as file:
     lines = file.readlines()
     for line in lines:
@@ -20,7 +21,6 @@ def section_9():
     name_value = get_value("name", "")
     email_value = get_value("email", "")
     phone_value = get_value("phone", "")
-    country_value = get_value("country", "Choose Your Country")
     st.image(f"./app/assets/steps/{st.session_state.get('stage')+1}.png")
     st.header(":gray[Form 📝]", divider="rainbow")
 
@@ -37,7 +37,6 @@ def section_9():
                 label="Phone:", value=phone_value)
         email = st.text_input(
             label="E-posta:", placeholder="johndoe@mail.com", value=email_value)
-        # st.checkbox("test")
 
         def submit():
             if not name:
