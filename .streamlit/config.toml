@@ -1,0 +1,14 @@
+[theme]
+base="light"
+primaryColor="#6dc0c9"
+secondaryBackgroundColor="#e2dfdf"
+textColor="#262730"
+
+
+
+
+
+
+[server]
+port = 8501
+enableCORS = true
