@@ -16,6 +16,9 @@ def section_0():
         time.sleep(0.02)
         my_bar.progress(percent_complete + 1, text=progress_text)
     my_bar.empty()
-    st.session_state.get("user").update({"language_code":get_language_code()})
+    st.session_state.get("user").update({"language_code":get_language_code(),
+                                         "referer":f"https://esthetichairturkey.com/{get_language_code()}/"
+                                         })
+    print(st.session_state.get("user"))
     st.session_state["stage"] += 1
     st.rerun()

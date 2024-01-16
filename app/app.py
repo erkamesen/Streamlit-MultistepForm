@@ -84,6 +84,7 @@ def create_app():
         medicines = user.get("medicine_choice").get("medicines")
         diseases = user.get("medicine_choice").get("diseases")
         image_list = user.get("upload_choice")
+        referer = user.get("referer")
         message = f"""
         Name: {name}
         Email: {email}
@@ -97,6 +98,7 @@ def create_app():
         Plan: {plan}
         Medicines: {medicines}
         Diseases: {diseases}
+        Referer Url: {referer}
         """
         with Database("contacts.sqlite3") as db:
             db.add("contacts", {
