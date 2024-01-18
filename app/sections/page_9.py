@@ -15,7 +15,7 @@ with open("countries.txt", "r") as file:
             country_codes[country_name] = country_code
 
 country_list = list(country_codes.keys())
-country_list.insert(0, get_text("Choose Your Country"))
+country_list.insert(0, "-")
 
 
 def section_9():
@@ -26,7 +26,7 @@ def section_9():
     st.header(":gray[Form 📝]", divider="rainbow")
 
     selected_country = st.selectbox(get_text('Select Country:'), country_list, index=0)
-    if selected_country != get_text("Choose Your Country"):
+    if selected_country != "-":
 
         name = st.text_input(
             label=get_text("Name:"), placeholder="John Doe", value=name_value)
@@ -47,7 +47,9 @@ def section_9():
             elif not phone.startswith("+") or len(phone.replace(" ", "").strip()) < 8:
                 st.toast(
                     get_text("Please enter your phone number with Country Code!!!!"))
-            elif not check_email(email):
+            elif not email:
+                st.toast(get_text("Please enter valid email.."))
+            elif not check_email(email.strip()):
                 st.toast(get_text("Please enter valid email.."))
             else:
                 st.session_state["stage"] += 1
